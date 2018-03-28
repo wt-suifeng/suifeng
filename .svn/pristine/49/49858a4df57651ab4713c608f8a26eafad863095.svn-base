@@ -1,0 +1,13 @@
+package com.qfedu.lvyou.service;
+
+import com.qfedu.lvyou.model.User;
+
+public interface IAuthenticationService {
+	
+	/**
+	 * @param user
+	 * @param password
+	 * @return
+	 */
+	public User authenticate (String user, String password);
+}

@@ -1,0 +1,31 @@
+package com.qfedu.lvyou.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.qfedu.lvyou.model.Guest;
+import com.qfedu.lvyou.service.IGuestService;
+
+@Controller
+@RequestMapping("/ly/guest")
+public class GuestController {
+	
+	@Resource
+	private IGuestService guestService;
+	
+	@RequestMapping("/list")
+	public ModelAndView getGuests() {
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName("guest/list");
+		List<Guest> guests = guestService.getGuests();
+		mView.addObject("guests", guests);
+		return mView;
+		
+	}
+
+}

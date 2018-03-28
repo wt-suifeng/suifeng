@@ -1,0 +1,23 @@
+package com.qfedu.lvyou.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import com.qfedu.lvyou.dao.ISiteDao;
+import com.qfedu.lvyou.model.Site;
+import com.qfedu.lvyou.service.ISiteService;
+@Service
+@Transactional
+public class SiteService implements ISiteService {
+	@Resource
+	private ISiteDao siteDao;
+	@Override
+	public List<Site> getSites() {
+		return siteDao.getSites();
+	}
+
+}

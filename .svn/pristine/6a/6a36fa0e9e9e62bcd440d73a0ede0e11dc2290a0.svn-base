@@ -1,0 +1,26 @@
+package com.qfedu.lvyou.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.qfedu.lvyou.dao.IEmployeeDao;
+import com.qfedu.lvyou.model.Employee;
+import com.qfedu.lvyou.service.IEmployeeService;
+
+@Service
+@Transactional
+public class EmployeeService implements IEmployeeService{
+
+	@Resource
+	private IEmployeeDao employeeDao;
+	
+	@Override
+	public List<Employee> getEmployees() {
+		return employeeDao.getEmployees();
+	}
+
+}

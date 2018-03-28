@@ -1,0 +1,47 @@
+package com.qfedu.lvyou.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.qfedu.lvyou.model.Scene;
+import com.qfedu.lvyou.service.ISceneService;
+
+@Controller
+@RequestMapping("/ly/scene")
+
+public class SceneController {
+	
+	@Resource
+	private ISceneService sceneService;
+	
+	@RequestMapping("/list")
+	public ModelAndView getScenes() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("scene/list");
+		List<Scene> scenes = sceneService.getScenes();
+		mav.addObject("scenes", scenes);
+		return mav;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+package com.qfedu.lvyou.service.impl;
+
+import java.util.List;
+import java.util.UUID;
+
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import com.qfedu.lvyou.dao.GuestDao;
+import com.qfedu.lvyou.dao.IUserDao;
+import com.qfedu.lvyou.model.Guest;
+import com.qfedu.lvyou.model.User;
+import com.qfedu.lvyou.service.IGuestService;
+@Service
+@Transactional
+public class GuestService implements IGuestService {
+	
+	@Resource
+	private GuestDao guestDao;
+
+	@Override
+	public List<Guest> getGuests() {
+		// TODO Auto-generated method stub
+		return guestDao.getGuests();
+	}
+
+	@Resource
+	private IUserDao userDao;
+	
+	@Override
+	public void createGuest(Guest guest) {
+		// 1.判断guest的手机号对应的User是否存在，如果存在，则获取User；否则，创建一个User
+		User user = userDao.getUserByLoginName(guest.getMobile());
+		if (user == null) {
+			user = new User ();
+			user.setId(UUID.randomUUID().toString());
+			user.setLoginName(guest.getMobile());
+			userDao.createUser(user);
+		}
+		// 2.设置guest的user属性
+		guest.setUser(user);
+		// 3.guest入库
+		guestDao.createGuest(guest);
+	}
+
+}

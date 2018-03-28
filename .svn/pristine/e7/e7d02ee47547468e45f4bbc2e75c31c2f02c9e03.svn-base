@@ -1,0 +1,20 @@
+package com.qfedu.lvyou.dao;
+
+import java.util.List;
+
+import com.qfedu.lvyou.model.Comment;
+
+/**
+ * 评论访问数据接口
+ * @author Administrator
+ *
+ */
+public interface CommentDao {
+
+	/**
+	 * 获取所有评论
+	 * @return
+	 */
+	public abstract List<Comment> getAllComment();
+
+}

@@ -1,0 +1,23 @@
+package com.qfedu.lvyou.service.impl;
+
+import java.util.List;
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Service;
+import com.qfedu.lvyou.dao.CommentDao;
+import com.qfedu.lvyou.model.Comment;
+import com.qfedu.lvyou.service.CommentService;
+
+@Service
+@Transactional
+public class CommentServiceImpl implements CommentService {
+
+	@Resource
+	private CommentDao commentDao;
+	
+	@Override
+	public List<Comment> getAllComment() {
+		return commentDao.getAllComment();
+	}
+
+}
